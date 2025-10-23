@@ -64,7 +64,7 @@ pipeline {
                 sh "docker-compose up -d"
             }
         post {
-            sucess {
+            success {
                 echo "Docker Containers are started sucessfully"
             }
             failure {
