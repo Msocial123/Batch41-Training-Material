@@ -9,7 +9,7 @@ pipeline {
         AWS_ACCOUNT_ID = "909688465000"
         REGION = "ap-south-1"
         REPO_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/devops"
-        DOCKER_IMAGE = "clahan-app-web:{VERSION}"
+        DOCKER_IMAGE = "clahan-app-web:${VERSION}"
         DOCKER_REGISTRY = "docker.io"
         DOCKER_REGISTRY_CREDENCIALS = "docker_creds"
     }
