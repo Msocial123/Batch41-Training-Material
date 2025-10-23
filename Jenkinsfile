@@ -42,6 +42,35 @@ pipeline {
                     }
                 }
             }
-        } 
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: "${DOCKER_REGISTRY_CREDENCIALS}", passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                  echo "Pushing the docker image to Docker Hub"
+                  sh """
+                    docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+                    docker tag ${DOCKER_IMAGE} muralisocial123/${DOCKER_IMAGE}
+                    docker push muralisocial123/${DOCKER_IMAGE}
+                    """  
+            }
+            }
+        }
+
+        stage("RUN Docker Compose")
+        {
+            steps {
+                echo "Start the Containers using docker-compose"
+                sh "docker-compose up -d"
+            }
+        post {
+            sucess {
+                echo "Docker Containers are started sucessfully"
+            }
+            failure {
+                echo "Docker Containers are Failed"
+            }
+        }
+        }
     }
 }
