@@ -12,7 +12,6 @@ pipeline {
         DOCKER_IMAGE = "clahan-app-web:{VERSION}"
         DOCKER_REGISTRY = "docker.io"
         DOCKER_REGISTRY_CREDENCIALS = "docker_creds"
-
     }
 
     stages {
@@ -25,25 +24,24 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-            echo "Building the Docker Image ${DOCKER_IMAGE}"
-            sh "docker build -t ${DOCKER_IMAGE} ."
-        }
+                echo "Building the Docker Image ${DOCKER_IMAGE}"
+                sh "docker build -t ${DOCKER_IMAGE} ."
+            }
         }
 
         stage('Push to ECR') {
             steps {
                 script {
                     withAWS(credentials: 'aws_creds', region: "${REGION}") {
-                        echo " Pushing the docker image to AWS ECR"
+                        echo "Pushing the docker image to AWS ECR"
                         sh """
-                           aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${REPO_URI}
-                           docker tag ${DOCKER_IMAGE} ${REPO_URI}:${VERSION}
-                           docker push ${REPO_URI}:${VERSION}
-                    }   """     
-
+                            aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${REPO_URI}
+                            docker tag ${DOCKER_IMAGE} ${REPO_URI}:${VERSION}
+                            docker push ${REPO_URI}:${VERSION}
+                        """
+                    }
                 }
             }
-        }
-       
+        } 
     }
 }
