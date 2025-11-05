@@ -11,12 +11,12 @@ spec: # Defines the Behaviour of the replicaset
       web: flower
   template:
     metadata:
-    labels:
-      web: flower 
-  spec: # Defines the Behaviour of the Pod 
-    containers:
-      - image: muralisocial123/sre-training-web:v1.1.0
-        name: sre-web 
-        ports:
-          - containerPort: 3015
+      labels:
+        web: flower 
+    spec: # Defines the Behaviour of the Pod 
+      containers:
+        - image: muralisocial123/sre-training-web:v1.1.0
+          name: sre-web 
+          ports:
+            - containerPort: 3015
       
