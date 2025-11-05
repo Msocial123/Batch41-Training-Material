@@ -10,7 +10,7 @@ spec: # Defines the Behaviour of the replicaset
     matchLabels:
       web: flower
   template:
-  metadata:
+    metadata:
     labels:
       web: flower 
   spec: # Defines the Behaviour of the Pod 
