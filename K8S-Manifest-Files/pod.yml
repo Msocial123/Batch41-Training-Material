@@ -9,3 +9,7 @@ spec:
       image: muralisocial123/flipkart-app-web:v1.1
       ports: 
         - containerPort: 80  
+    - name: flip-cont 
+      image: muralisocial123/flipkart-app-web:v1.1
+      ports: 
+        - containerPort: 80      
