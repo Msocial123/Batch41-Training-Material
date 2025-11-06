@@ -1,0 +1,23 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: flipkart-app-deployment 
+  labels:
+    first: flipkart
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flip
+  template:
+    metadata:
+      labels: 
+        app: flip
+    spec: 
+      containers:
+        - name: flipkart-cont
+          image: muralisocial123/flipkart-app-web:v1.1.0
+          ports: 
+            - containerPort: 80
+    
+    
