@@ -19,5 +19,18 @@ spec:
           image: muralisocial123/flipkart-app-web:v1.1.0
           ports: 
             - containerPort: 80
+--- 
+apiVersion: v1 
+kind: Service 
+metadata:
+  name: flipkart-svc 
+spec: 
+  selector:
+    app: flip   
+  ports:
+    - protocol: TCP 
+      port: 81 # Service Port on which port number you want expose an application 
+      targetPort: 80  
+  type: ClusterIP                           
     
     
