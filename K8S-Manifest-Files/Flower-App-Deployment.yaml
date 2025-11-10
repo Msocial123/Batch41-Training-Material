@@ -26,7 +26,7 @@ metadata:
   name: flower-app-svc 
 spec: 
   selector: 
-    first: app
+    app: web
   ports:
     - targetPort: 3015
       port: 3016 
