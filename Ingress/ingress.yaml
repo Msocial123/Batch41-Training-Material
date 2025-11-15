@@ -1,41 +1,44 @@
 apiVersion: networking.k8s.io/v1
-kind: Ingress 
-metadata: 
-  name: MyIngress 
+kind: Ingress
+metadata:
+  name: my-ingress
   annotations:
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "false" 
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$3
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
-  ingressClassName: nginx 
+  ingressClassName: nginx
   rules:
   - http:
-    paths:
-    - path: /flip(/|$)(.*) 
-      pathType: Prefix 
-      backend:
-        service:
-          name: flipkart-svc
-          port:
-            number: 81
-    - path: /flower(/|$)(.*) 
-      pathType: Prefix 
-      backend:
-        service:
-          name: flower-app-svc
-          port:
-            number: 3016
-    - path: /organic(/|$)(.*) 
-      pathType: Prefix 
-      backend:
-        service:
-          name: organic-svc
-          port:
-            number: 5657 
-    - path: /(.*) 
-      pathType: Prefix 
-      backend:
-        service:
-          name: organic-svc
-          port:
-            number: 5657           
+      paths:
+      - path: /flip(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: flipkart-svc
+            port:
+              number: 81
+
+      - path: /flower(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: flower-app-svc
+            port:
+              number: 3016
+
+      - path: /organic(/|$)(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: organic-svc
+            port:
+              number: 5657
+
+      - path: /(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: organic-svc
+            port:
+              number: 5657
