@@ -22,7 +22,8 @@ spec:
 --- 
 apiVersion: v1 
 kind: Service
-metadata:
+metadata: 
+  name: organic-svc 
   app: organic
 spec: 
   selector:
