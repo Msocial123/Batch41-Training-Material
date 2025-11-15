@@ -1,0 +1,36 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: organic-deployment
+  labels:
+    app: example
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: organic
+  template:
+    metadata:
+      labels: 
+        app: organic
+    spec: 
+      containers:
+        - name: organic-cont
+          image: muralisocial123/organic-app-web:latest
+          ports: 
+            - containerPort: 5656
+--- 
+apiVersion: v1 
+kind: Service 
+metadata:
+  app: organic
+spec: 
+  selector:
+    app: organic  
+  ports:
+    - protocol: TCP 
+      port: 5657 # Service Port on which port number you want expose an application 
+      targetPort: 5656  
+  type: ClusterIP                           
+    
+    

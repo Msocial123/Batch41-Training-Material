@@ -31,7 +31,7 @@ spec:
     - targetPort: 3015
       port: 3016 
       protocol: TCP 
-  type: NodePort    
+  type: ClusterIP    
                   
     
     
