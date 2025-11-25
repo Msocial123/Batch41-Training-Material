@@ -1,0 +1,20 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: mythree-app-deployment 
+spec:
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: web 
+  template: # Pod Defination 
+    metadata:
+      labels:
+        app: web 
+    spec: 
+      containers:
+        - name: murali-container 
+          image:  muralisocial123/flipkart-app-web:v1.1.0
+          ports:
+            - containerPort: 80
+      
