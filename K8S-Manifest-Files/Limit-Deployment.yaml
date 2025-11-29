@@ -16,11 +16,11 @@ spec:
         - name: flip-cont 
           image: muralisocial123/clahan-app-web:v3.1.0
           ports:
-            - containerPort: 80 
-          resources: 
+            - containerPort: 80
+          resources:
             requests:
               cpu: "100m"
               memory: "250Mi"
-            limit:
+            limits:
               cpu: "200m"
               memory: "450Mi"  
