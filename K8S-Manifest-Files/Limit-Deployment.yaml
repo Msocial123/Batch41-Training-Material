@@ -14,7 +14,7 @@ spec:
     spec: 
       containers:
         - name: flip-cont 
-          image: muralisocial123/clahan-app-web:v3.1.0
+          image: muralisocial123/flipkart-app-web:v1.1.0
           ports:
             - containerPort: 80
           resources:
