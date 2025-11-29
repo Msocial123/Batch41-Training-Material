@@ -23,4 +23,39 @@ spec:
               memory: "250Mi"
             limits:
               cpu: "200m"
-              memory: "450Mi"  
+              memory: "450Mi"
+--- 
+apiVersion: v1    
+kind: Service 
+metadata: 
+  name: flip-deployment-svc 
+spec: 
+  selector: 
+    app: web 
+  ports: 
+    - port: 81 
+      targetPort: 80 
+      protocol: TCP 
+  type: LoadBalancer 
+--- 
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: flip-autoscaling-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: flip-deployment
+  minReplicas: 1
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 5
+
+        
+                   
