@@ -1,0 +1,26 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata:
+  name: flip-deployment 
+spec:
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: web 
+  template:
+    metadata: 
+      labels:
+        app: web 
+    spec: 
+      containers:
+        - name: flip-cont 
+          image: muralisocial123/clahan-app-web:v3.1.0
+          ports:
+            - containerPort: 80 
+          resources: 
+            requests:
+              cpu: "100m"
+              memory: "250Mi"
+            limit:
+              cpu: "200m"
+              memory: "450Mi"  
